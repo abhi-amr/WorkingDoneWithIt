@@ -1,0 +1,8 @@
+npm packages :
+    npm i expo-constants
+    expo install react-native-gesture-handler   //also can use npm?
+    npm i formik
+    npm i yup
+
+suggestions:
+    change PickerItem name to AppPickerItem (PickerItem is already a part of deprecated library)
