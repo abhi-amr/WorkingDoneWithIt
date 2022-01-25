@@ -9,6 +9,12 @@ Part 1:
 Part 2:
   npm packages: expo install expo-image-picker
     expo install expo-permissions
+    expo install expo-location
+
+    npm install @react-navigation/native
+    expo install react-native-screens react-native-safe-area-context
+    npm install @react-navigation/native-stack
+    npm install @react-navigation/bottom-tabs
 
 PowerShell Issue: Get-ExecutionPolicy
   Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
