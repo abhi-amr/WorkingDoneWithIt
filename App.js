@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 
 import colors from './app/config/colors';
 import MessageScreen from './app/screens/MessagesScreen';
@@ -14,11 +15,29 @@ import AppPicker from './app/components/AppPicker';
 import LoginScreen from './app/screens/LoginScreen';
 import ListingEditScreen from './app/screens/ListingEditScreen';
 import ListingDetailsScreen from './app/screens/ListingDetailsScreen';
+import ImageInput from './app/components/ImageInput';
+import AppButton from './app/components/AppButton';
+import ImageInputList from './app/components/ImageInputList';
 
 
 export default function App() {
+  const [imageUris, setImageUris] = useState([]);
+
+  const handleAdd = uri => {
+    setImageUris([...imageUris, uri]);
+  }
+
+  const handleRemove = uri => {
+    setImageUris(imageUris.filter( imageUri => imageUri!== uri));
+  }
+  
   return (
-    <AccountScreen/>
+    <Screen>
+      <ImageInputList 
+      imageUris={imageUris} 
+      onAddImage={handleAdd}
+      onRemoveImage={handleRemove}/>
+    </Screen>
   );
 }
 
