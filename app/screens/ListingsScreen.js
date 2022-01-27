@@ -1,43 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 
 import Screen from '../components/Screen';
 import Card from '../components/Card';
 import colors from '../config/colors';
+import listingsApi from '../api/listing';
 import routes from '../navigation/routes';
-
-const listings = [
-    {
-        id : 1,
-        title : 'Black Top',
-        price : 100,
-        image : require('../assets/cardDemo.jpg')
-    },
-    {
-        id : 2,
-        title : 'Pebble in black',
-        price : 1000,
-        image : require('../assets/pebble.jpg')
-    },
-    {
-        id : 3,
-        title : 'PebbloBar',
-        price : 1000,
-        image : require('../assets/pebble.jpg')
-    }
-]
+import AppText from '../components/AppText';
+import AppButton from '../components/AppButton';
+import ActivityIndicator from '../components/ActivityIndicator';
+import useApi from '../hooks/useApi';
 
 function ListingsScreen({ navigation }) {
+    const getListings = useApi(listingsApi.getPhotos);
+
+    useEffect(() => {
+        getListings.request();  
+    }, []);
+
+    
     return (
         <Screen style={styles.screen}>
+            {getListings.error && 
+                <>
+                    <AppText>Couldnt retrieve listing at this moment</AppText>
+                    <AppButton title='Retry' onPress={getListings.request}/>
+                </>}
+            <ActivityIndicator visible={getListings.loading} />
             <FlatList
-                data={listings}
+                data={getListings.data}
                 keyExtractor={listing => listing.id.toString()}
                 renderItem={({item}) => (
                     <Card
                         title={item.title}
-                        subTitle={'$' + item.price }
-                        image={item.image}
+                        subTitle={'$' + item.albumId*100 } //harcoding because the api doesnt have price field
+                        imageUrl={item.url}
                         onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
                     />
                 )}

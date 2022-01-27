@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
@@ -6,6 +6,9 @@ import CategoryPickerItem from '../components/CategoryPickerItem';
 import Screen from '../components/Screen';
 import { AppForm, AppFormField, AppFormPicker, SubmitButton } from '../components/forms';
 import FormImagePicker from '../components/forms/FormImagePicker';
+import useLocation from '../hooks/useLocation';
+import listingsApi from '../api/listing';
+import UploadScreen from './UploadScreen';
 
 const validationSchema = Yup.object().shape({
     title : Yup.string().required().min(1).label('Title'),
@@ -23,8 +26,31 @@ const categories = [
 ]
 
 function ListingEditScreen(props) {
+    const [uploadScreenVisible, setUploadScreenVisible] = useState(false);
+    const [progress, setProgress] = useState(0);
+    const location = useLocation();
+    const handleSubmit = async (photoNData, { resetForm }) => {    //formikbag
+        setProgress(0);
+        setUploadScreenVisible(true);
+        // await listingsApi.addPhotos({...photoNData, location});
+        const result = await listingsApi.addDummy({...photoNData, location}, 
+            (progress) => setProgress(progress));
+
+        if(!result.ok){
+            setUploadScreenVisible(false);
+            return alert('Couldnt save the details');
+        }    
+
+        //everything goes well then reset
+        resetForm();
+    };
+
     return (
         <Screen style={styles.container}>
+            <UploadScreen 
+                onDone={() => setUploadScreenVisible(false)}
+                progress={progress} 
+                visible={uploadScreenVisible} />
             <AppForm
                 initialValues={{
                     title : '',
@@ -33,7 +59,7 @@ function ListingEditScreen(props) {
                     category : null,
                     images : [],
                 }}
-                onSubmit={ (values) => console.log(values)}
+                onSubmit={ handleSubmit }
                 validationSchema={validationSchema}
             >
                 <FormImagePicker 

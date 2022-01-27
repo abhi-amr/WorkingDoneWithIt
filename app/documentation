@@ -16,6 +16,10 @@ Part 2:
     npm install @react-navigation/native-stack
     npm install @react-navigation/bottom-tabs
 
+    npm i apisauce
+
+    npm i react-native-progress
+
 PowerShell Issue: Get-ExecutionPolicy
   Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
   Set-ExecutionPolicy Restricted -Scope CurrentUser
