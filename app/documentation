@@ -1,15 +1,15 @@
 Part 1:
-  npm packages: npm i expo-constants
-    expo install react-native-gesture-handler   //also can use npm?
-    npm i formik
-    npm i yup
+npm packages: npm i expo-constants
+expo install react-native-gesture-handler //also can use npm?
+npm i formik
+npm i yup
 
-  suggestions: change PickerItem name to AppPickerItem (PickerItem is already a part of deprecated library)
+suggestions: change PickerItem name to AppPickerItem (PickerItem is already a part of deprecated library)
 
 Part 2:
-  npm packages: expo install expo-image-picker
-    expo install expo-permissions
-    expo install expo-location
+npm packages: expo install expo-image-picker
+expo install expo-permissions
+expo install expo-location
 
     npm install @react-navigation/native
     expo install react-native-screens react-native-safe-area-context
@@ -20,7 +20,12 @@ Part 2:
 
     npm i react-native-progress
 
+    expo install @react-native-community/netinfo
+    expo install @react-native-async-storage/async-storage
+
+    npm i moment    //uninstall later and look for light weight alternative
+
 PowerShell Issue: Get-ExecutionPolicy
-  Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-  Set-ExecutionPolicy Restricted -Scope CurrentUser
-  Set-ExecutionPolicy Undefined -Scope CurrentUser
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+Set-ExecutionPolicy Restricted -Scope CurrentUser
+Set-ExecutionPolicy Undefined -Scope CurrentUser
