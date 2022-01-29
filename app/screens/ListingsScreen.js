@@ -20,13 +20,15 @@ function ListingsScreen({ navigation }) {
 
     
     return (
+        <>
+        <ActivityIndicator visible={getListings.loading} />
         <Screen style={styles.screen}>
             {getListings.error && 
                 <>
                     <AppText>Couldnt retrieve listing at this moment</AppText>
                     <AppButton title='Retry' onPress={getListings.request}/>
                 </>}
-            <ActivityIndicator visible={getListings.loading} />
+            {/* ActivityIndicator was here before the overlay */}
             <FlatList
                 data={getListings.data}
                 keyExtractor={listing => listing.id.toString()}
@@ -40,6 +42,7 @@ function ListingsScreen({ navigation }) {
                 )}
             />
         </Screen>
+        </>
     );
 }
 

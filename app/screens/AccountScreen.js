@@ -1,10 +1,11 @@
 import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
-import Icon from '../components/Icon';
 
+import Icon from '../components/Icon';
 import { ListItem, ListItemSeperator} from '../components/lists';
 import Screen from '../components/Screen';
 import colors from '../config/colors';
+import useAuth from '../auth/useAuth';
 
 const menuItems = [
     {
@@ -25,11 +26,13 @@ const menuItems = [
 ]
 
 function AccountScreen({navigation}) {
+    const { user, logout } = useAuth();
+    
     return (
         <Screen style={styles.screen}>
             <View style={styles.container}>
                 <ListItem 
-                    title='Hinata Uzumaki'
+                    title={user.name}
                     subTitle='shadowclonejutsu@fav.com'
                     image={require('../assets/author.jpg')}
                 />
@@ -58,6 +61,7 @@ function AccountScreen({navigation}) {
                 IconComponent={
                     <Icon name='logout' backgroundColor={colors.yellow} />
                 }
+                onPress={() => logout()}
             />
         </Screen>
     );
