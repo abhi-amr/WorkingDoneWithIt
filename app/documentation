@@ -29,6 +29,12 @@ expo install expo-location
     expo install expo-secure-store
     expo install expo-app-loading
 
+    expo install expo-notifications
+
+    npm i -g sharp-cli
+    npx expo-optimize
+    expo build:android
+
 PowerShell Issue: Get-ExecutionPolicy
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 Set-ExecutionPolicy Restricted -Scope CurrentUser

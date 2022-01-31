@@ -1,10 +1,11 @@
 {
   "expo": {
     "name": "DoneWithIt",
-    "slug": "DoneWithIt",
+    "slug": "workingDoneWithIt",
+    "owner": "tonyriddle",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/assets/icon.png",
+    "icon": "./app/assets/icon2.png",
     "splash": {
       "image": "./app/assets/zsplash.png",
       "resizeMode": "cover",
@@ -20,6 +21,8 @@
       "supportsTablet": true
     },
     "android": {
+      "package" : "com.tonyriddle.donewithit",
+      "versionCode" : 1,
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -27,6 +30,7 @@
     },
     "web": {
       "favicon": "./app/assets/favicon.png"
-    }
+    },
+    "description" : "A learning curve"
   }
 }
